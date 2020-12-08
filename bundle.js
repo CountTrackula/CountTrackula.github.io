@@ -2550,7 +2550,7 @@ function createChart() {
             zoomType: 'x'
         },
         title: {
-            text: 'Occupancy - Today'
+            text: 'Occupancy'
         },
         xAxis: {
             title: {
@@ -2605,7 +2605,7 @@ function createChart() {
             enabled: false
         },
         data: {
-            rowsURL: 'https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson',
+            rowsURL: jsonGraphUrl,
             firstRowAsNames: false,
             enablePolling: pollingCheckbox.checked === true,
             dataRefreshRate: validatePollingInput()
@@ -2623,6 +2623,31 @@ function validatePollingInput() {
 pollingCheckbox.onchange = pollingInput.onchange = createChart;
 // Create the chart
 createChart();
+// Graphs buttons
+var todayJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson";
+var lastWeekJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastWeekToJson";
+var lastMonthJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastMonthToJson";
+var allJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetAllToJson";
+var jsonGraphUrl = todayJsonStringUrl;
+var GetAllToJsonButton = document.getElementById("GetAllToJsonButton");
+var GetLastMonthToJsonButton = document.getElementById("GetLastMonthToJsonButton");
+var GetLastWeekToJsonButton = document.getElementById("GetLastWeekToJsonButton");
+var GetTodayToJsonButton = document.getElementById("GetTodayToJsonButton");
+GetAllToJsonButton.addEventListener("click", function () { jsonGraphUrl = allJsonStringUrl; createChart(); });
+GetLastMonthToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastMonthJsonStringUrl; createChart(); });
+GetLastWeekToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastWeekJsonStringUrl; createChart(); });
+GetTodayToJsonButton.addEventListener("click", function () { jsonGraphUrl = todayJsonStringUrl; createChart(); });
+var btns = document.getElementsByClassName("graphButtons");
+for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+}
+// MAIL CHIMP
+// let sendEmail: HTMLInputElement = <HTMLInputElement>document.getElementById("sendEmail");
+// sendEmail.addEventListener("click", SendEmail);
 // let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
 // let clearGetAllListButton:HTMLButtonElement =<HTMLButtonElement> document.getElementById("clearGetAllListButton")
 // let getButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getButton")
