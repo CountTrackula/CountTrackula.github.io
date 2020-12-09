@@ -2,13 +2,9 @@
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/axios/index.js":
-/*!*************************************!*\
+/*!*************************************!*
   !*** ./node_modules/axios/index.js ***!
   \*************************************/
-/*! dynamic exports */
-/*! export __esModule [maybe provided (runtime-defined)] [no usage info] [provision prevents renaming (no use info)] -> ./node_modules/axios/lib/axios.js .__esModule */
-/*! other exports [maybe provided (runtime-defined)] [no usage info] -> ./node_modules/axios/lib/axios.js */
-/*! runtime requirements: module, __webpack_require__ */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
@@ -16,12 +12,9 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
 /***/ }),
 
 /***/ "./node_modules/axios/lib/adapters/xhr.js":
-/*!************************************************!*\
+/*!************************************************!*
   !*** ./node_modules/axios/lib/adapters/xhr.js ***!
   \************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -192,12 +185,9 @@ module.exports = function xhrAdapter(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/axios.js":
-/*!*****************************************!*\
+/*!*****************************************!*
   !*** ./node_modules/axios/lib/axios.js ***!
   \*****************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 49:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -258,12 +248,9 @@ module.exports.default = axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/Cancel.js":
-/*!*************************************************!*\
+/*!*************************************************!*
   !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
   \*************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 19:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -291,12 +278,9 @@ module.exports = Cancel;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/CancelToken.js":
-/*!******************************************************!*\
+/*!******************************************************!*
   !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
   \******************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 57:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -362,12 +346,9 @@ module.exports = CancelToken;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/isCancel.js":
-/*!***************************************************!*\
+/*!***************************************************!*
   !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
   \***************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 3:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -381,12 +362,9 @@ module.exports = function isCancel(value) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/Axios.js":
-/*!**********************************************!*\
+/*!**********************************************!*
   !*** ./node_modules/axios/lib/core/Axios.js ***!
   \**********************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 79:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -474,12 +452,9 @@ module.exports = Axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/InterceptorManager.js":
-/*!***********************************************************!*\
+/*!***********************************************************!*
   !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
   \***********************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 52:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -540,12 +515,9 @@ module.exports = InterceptorManager;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/createError.js":
-/*!****************************************************!*\
+/*!****************************************************!*
   !*** ./node_modules/axios/lib/core/createError.js ***!
   \****************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -572,12 +544,9 @@ module.exports = function createError(message, config, code, request, response) 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/dispatchRequest.js":
-/*!********************************************************!*\
+/*!********************************************************!*
   !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
   \********************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 25:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -672,12 +641,9 @@ module.exports = function dispatchRequest(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/enhanceError.js":
-/*!*****************************************************!*\
+/*!*****************************************************!*
   !*** ./node_modules/axios/lib/core/enhanceError.js ***!
   \*****************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -707,12 +673,9 @@ module.exports = function enhanceError(error, config, code, request, response) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/settle.js":
-/*!***********************************************!*\
+/*!***********************************************!*
   !*** ./node_modules/axios/lib/core/settle.js ***!
   \***********************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 12:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -747,12 +710,9 @@ module.exports = function settle(resolve, reject, response) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/transformData.js":
-/*!******************************************************!*\
+/*!******************************************************!*
   !*** ./node_modules/axios/lib/core/transformData.js ***!
   \******************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -781,12 +741,9 @@ module.exports = function transformData(data, headers, fns) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/defaults.js":
-/*!********************************************!*\
+/*!********************************************!*
   !*** ./node_modules/axios/lib/defaults.js ***!
   \********************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 96:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -891,12 +848,9 @@ module.exports = defaults;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/bind.js":
-/*!************************************************!*\
+/*!************************************************!*
   !*** ./node_modules/axios/lib/helpers/bind.js ***!
   \************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 3:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -916,12 +870,9 @@ module.exports = function bind(fn, thisArg) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
-/*!****************************************************!*\
+/*!****************************************************!*
   !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
   \****************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -996,12 +947,9 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/combineURLs.js":
-/*!*******************************************************!*\
+/*!*******************************************************!*
   !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
   \*******************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -1024,12 +972,9 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/cookies.js":
-/*!***************************************************!*\
+/*!***************************************************!*
   !*** ./node_modules/axios/lib/helpers/cookies.js ***!
   \***************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1091,12 +1036,9 @@ module.exports = (
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
-/*!*********************************************************!*\
+/*!*********************************************************!*
   !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
   \*********************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -1119,12 +1061,9 @@ module.exports = function isAbsoluteURL(url) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
-/*!***********************************************************!*\
+/*!***********************************************************!*
   !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
   \***********************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1201,12 +1140,9 @@ module.exports = (
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
-/*!***************************************************************!*\
+/*!***************************************************************!*
   !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
   \***************************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1227,12 +1163,9 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
-/*!********************************************************!*\
+/*!********************************************************!*
   !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
   \********************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 27:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1294,12 +1227,9 @@ module.exports = function parseHeaders(headers) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/spread.js":
-/*!**************************************************!*\
+/*!**************************************************!*
   !*** ./node_modules/axios/lib/helpers/spread.js ***!
   \**************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -1335,12 +1265,9 @@ module.exports = function spread(callback) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/utils.js":
-/*!*****************************************!*\
+/*!*****************************************!*
   !*** ./node_modules/axios/lib/utils.js ***!
   \*****************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 282:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1652,12 +1579,9 @@ module.exports = {
 /***/ }),
 
 /***/ "./src/scss/styles.scss":
-/*!******************************!*\
+/*!******************************!*
   !*** ./src/scss/styles.scss ***!
   \******************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__.p, __webpack_require__.* */
-/*! CommonJS bailout: module.exports is used directly at 1:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "bundle.css";
@@ -1665,12 +1589,9 @@ module.exports = __webpack_require__.p + "bundle.css";
 /***/ }),
 
 /***/ "./src/index.htm":
-/*!***********************!*\
+/*!***********************!*
   !*** ./src/index.htm ***!
   \***********************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__.p, __webpack_require__.* */
-/*! CommonJS bailout: module.exports is used directly at 1:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "index.htm";
@@ -1678,14 +1599,9 @@ module.exports = __webpack_require__.p + "index.htm";
 /***/ }),
 
 /***/ "./node_modules/highcharts/highcharts.js":
-/*!***********************************************!*\
+/*!***********************************************!*
   !*** ./node_modules/highcharts/highcharts.js ***!
   \***********************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, top-level-this-exports, __webpack_require__, __webpack_exports__ */
-/*! CommonJS bailout: this is used directly at 8:298-302 */
-/*! CommonJS bailout: module.exports is used directly at 8:41-55 */
-/*! CommonJS bailout: module.exports is used directly at 8:72-86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -2238,13 +2154,9 @@ K(e,function(d,e){if(!v&&-1<h.collectionsWithUpdate.indexOf(e))for(d=y(d),m[e]=[
 /***/ }),
 
 /***/ "./node_modules/highcharts/modules/data.js":
-/*!*************************************************!*\
+/*!*************************************************!*
   !*** ./node_modules/highcharts/modules/data.js ***!
   \*************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__, __webpack_exports__ */
-/*! CommonJS bailout: module.exports is used directly at 10:39-53 */
-/*! CommonJS bailout: module.exports is used directly at 10:70-84 */
 /***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -2293,13 +2205,9 @@ b=[];for(a=0;a<this.readers.length;a+=1){var f=this.readers[a];"undefined"!==typ
 /***/ }),
 
 /***/ "./node_modules/highcharts/modules/exporting.js":
-/*!******************************************************!*\
+/*!******************************************************!*
   !*** ./node_modules/highcharts/modules/exporting.js ***!
   \******************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__, __webpack_exports__ */
-/*! CommonJS bailout: module.exports is used directly at 10:39-53 */
-/*! CommonJS bailout: module.exports is used directly at 10:70-84 */
 /***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -2350,12 +2258,9 @@ v(e,"init",function(){var a=this;a.exporting={update:function(b,c){a.isDirtyExpo
 /***/ }),
 
 /***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
+/*!*****************************************!*
   !*** ./node_modules/is-buffer/index.js ***!
   \*****************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
 /***/ ((module) => {
 
 /*!
@@ -2374,19 +2279,16 @@ module.exports = function isBuffer (obj) {
 /***/ }),
 
 /***/ "./src/js/index.ts":
-/*!*************************!*\
+/*!*************************!*
   !*** ./src/js/index.ts ***!
   \*************************/
-/*! namespace exports */
-/*! exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
-;
+
 // let timeout: any;
 var doorTrackingWebUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
 //let doorTrackingWebUrl: string = "https://localhost:44371/api/DoorsTracking"
@@ -2406,6 +2308,7 @@ setInterval(function GetCurrentOccupancy() {
         if (getMaximumCustomersCookie() != "") {
             if (AxiosResponse.data >= +getMaximumCustomersCookie() - (+getWarningRangeCookie())) {
                 overlayOn();
+                //sendEmail();
             }
             else {
                 overlayOff();
@@ -2543,6 +2446,11 @@ __webpack_require__(/*! highcharts/modules/data */ "./node_modules/highcharts/mo
 var pollingCheckbox = document.getElementById('enablePolling');
 var pollingInput = document.getElementById('pollingTime');
 document.addEventListener('DOMContentLoaded', createChart);
+Highcharts.setOptions({
+    time: {
+        timezoneOffset: 1 * 60
+    }
+});
 function createChart() {
     var chart = Highcharts.chart('container', {
         chart: {
@@ -2645,9 +2553,71 @@ for (var i = 0; i < btns.length; i++) {
         this.className += " active";
     });
 }
-// MAIL CHIMP
-// let sendEmail: HTMLInputElement = <HTMLInputElement>document.getElementById("sendEmail");
-// sendEmail.addEventListener("click", SendEmail);
+// Weatherstack
+var params = {
+    access_key: 'cc0a945795bf022c6c278263bd696e3b',
+    query: 'New York'
+};
+_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default().get('https://api.weatherstack.com/current', { params: params })
+    .then(function (response) {
+    var apiResponse = response.data;
+    console.log("Current temperature in " + apiResponse.location.name + " is " + apiResponse.current.temperature + "\u2103");
+}).catch(function (error) {
+    console.log(error);
+});
+// Nodemailer
+// require('dotenv').config();
+// const nodemailer = require('nodemailer');
+// // Step 1
+// let transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     // user: process.env.EMAIL,
+//     // pass: process.env.PASSWORD
+//     user: 'real.count.trackula@gmail.com',
+//     pass: 'Zealand2020'
+//   }
+// });
+// // Step 2
+// let mailOptions ={
+//   from: 'real.count.trackula@gmail.com',
+//   to: 'k.kremizas@gmail.com',
+//   subject: 'Test subject',
+//   text: 'Test text'
+// };
+// // Step 3
+// function sendEmail(){
+//   transporter.sendMail(mailOptions, function(err: any, data: any){
+//   if (err) {
+//     console.log('Errror occurs', err);
+//   }
+//   else{
+//     console.log('Email sent!!!')
+//   }
+// });
+// }
+// let sendEmailButton: HTMLInputElement = <HTMLInputElement> document.getElementById("sendEmailButton");
+// sendEmailButton.addEventListener("click", sendEmail);
+// SENDGRID
+// var SendGrid = require('@sendgrid/mail');
+// const sgMail = require('@sendgrid/mail');
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const msg = {
+//   to: 'k.kremizas@gmail.com',
+//   from: 'real.count.trackula@gmail.com', // Use the email address or domain you verified above
+//   subject: 'Sending with Twilio SendGrid is Fun',
+//   text: 'and easy to do anywhere, even with Node.js',
+//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+// };
+// //ES6
+// sgMail
+//   .send(msg)
+//   .then(() => {
+//     console.log('Email sent')
+//   })
+// .catch((error) => {
+//   console.error(error)
+// })
 // let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
 // let clearGetAllListButton:HTMLButtonElement =<HTMLButtonElement> document.getElementById("clearGetAllListButton")
 // let getButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getButton")
