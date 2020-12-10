@@ -10933,9 +10933,6 @@ setInterval(function GetCurrentOccupancy() {
                 overlayOn();
                 SendWarningEmail();
             }
-            else {
-                overlayOff();
-            }
         }
     })
         .catch(function (error) {
