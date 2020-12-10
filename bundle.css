@@ -18,12 +18,13 @@ body {
   display: grid;
   height: 100vh;
   grid-template-rows: repeat(10, 1fr);
-  font-family: 'Arvo', serif;
+  font-family: Tahoma, serif;
+  color: #252222;
   background: #3a7bd5;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
+  background: -webkit-linear-gradient(#81b1a5, #4d796e);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #3a6073, #3a7bd5);
+  background: radial-gradient(#81b1a5, #4d796e);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
 header {
@@ -50,7 +51,7 @@ h1 {
   text-align: center; }
 
 .OccupancyValue {
-  color: red;
+  color: #eb7e3f;
   text-shadow: 2px 2px 5px black; }
 
 /* Style the navigation bar */
@@ -319,3 +320,39 @@ li {
   background-color: #666;
   color: white;
   cursor: pointer; }
+
+#weatherWidget {
+  background: #f0d3c2;
+  opacity: 0.9;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 18vw;
+  font-size: 0.7rem; }
+
+.forecast-row {
+  text-align: center;
+  height: auto; }
+
+.forecastDays {
+  display: inline-block; }
+
+.currentDay {
+  padding: 1rem; }
+
+.currentWeatherTimeAndCity {
+  text-align: right; }
+
+#currentWeather {
+  text-align: left;
+  font-size: 2rem;
+  float: left; }
+
+#currentTemp {
+  text-align: left;
+  float: left;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold; }
+
+#weatherIcon {
+  border: black 3px; }
