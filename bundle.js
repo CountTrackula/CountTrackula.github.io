@@ -10592,7 +10592,8 @@ exports.Zone = Zone;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getMaximumCustomersCookie": () => /* binding */ getMaximumCustomersCookie,
-/* harmony export */   "getWarningRangeCookie": () => /* binding */ getWarningRangeCookie
+/* harmony export */   "getWarningRangeCookie": () => /* binding */ getWarningRangeCookie,
+/* harmony export */   "getEmailCookie": () => /* binding */ getEmailCookie
 /* harmony export */ });
 /* harmony import */ var _graph__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./graph */ "./src/js/graph.ts");
 
@@ -10647,6 +10648,21 @@ function getMaximumCustomersCookie() {
 }
 function getWarningRangeCookie() {
     var name = "warningRange=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+function getEmailCookie() {
+    var name = "email=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     for (var i = 0; i < ca.length; i++) {
@@ -10715,7 +10731,8 @@ maximumCustomers.onchange = warningRange.onchange = WarningRangeLimit;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ createChart
+/* harmony export */   "default": () => /* binding */ createAreaChart,
+/* harmony export */   "createHistogramChart": () => /* binding */ createHistogramChart
 /* harmony export */ });
 /* harmony import */ var _cookies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cookies */ "./src/js/cookies.ts");
 
@@ -10726,14 +10743,14 @@ __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highchar
 __webpack_require__(/*! highcharts/modules/data */ "./node_modules/highcharts/modules/data.js")(Highcharts);
 var pollingCheckbox = document.getElementById('enablePolling');
 var pollingInput = document.getElementById('pollingTime');
-document.addEventListener('DOMContentLoaded', createChart);
+document.addEventListener('DOMContentLoaded', createAreaChart);
 Highcharts.setOptions({
     time: {
         timezoneOffset: 1 * 60
     }
 });
-function createChart() {
-    var chart = Highcharts.chart('container', {
+function createAreaChart() {
+    var chart = Highcharts.chart('AreaContainer', {
         chart: {
             type: 'area',
             zoomType: 'x'
@@ -10809,9 +10826,57 @@ function validatePollingInput() {
 }
 // We recreate instead of using chart update to make sure the loaded CSV
 // and such is completely gone.
-pollingCheckbox.onchange = pollingInput.onchange = createChart;
+pollingCheckbox.onchange = pollingInput.onchange = createAreaChart;
+function createHistogramChart() {
+    var chart = Highcharts.chart('HistogramContainer', {
+        chart: {
+            type: 'column',
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Daily Customers'
+        },
+        xAxis: {
+            title: {
+                text: 'Date'
+            },
+            type: 'datetime',
+            // Use the date format in the 
+            // labels property of the chart 
+            labels: {
+                formatter: function () {
+                    return Highcharts.dateFormat('%A<br>%b %e ', this.value);
+                }
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Total Customers'
+            },
+        },
+        // subtitle: {
+        //   text: 'Data input from a remote JSON file'
+        // },
+        legend: {
+            enabled: false
+        },
+        data: {
+            rowsURL: lastWeekEntranceJsonStringUrl,
+            firstRowAsNames: false,
+            enablePolling: pollingCheckbox.checked === true,
+            dataRefreshRate: validatePollingInput()
+        },
+        tooltip: {
+            headerFormat: '{point.x:%A, %b %e, %Y} <br>',
+            pointFormat: '<b>{point.y}</b> people entered',
+            shared: true
+        },
+    });
+}
+var lastWeekEntranceJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastWeekEntranceToJson";
 // Create the chart
-createChart();
+createAreaChart();
+createHistogramChart();
 // Graphs buttons
 var todayJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetTodayToJson";
 var lastWeekJsonStringUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking/GetLastWeekToJson";
@@ -10822,10 +10887,10 @@ var GetAllToJsonButton = document.getElementById("GetAllToJsonButton");
 var GetLastMonthToJsonButton = document.getElementById("GetLastMonthToJsonButton");
 var GetLastWeekToJsonButton = document.getElementById("GetLastWeekToJsonButton");
 var GetTodayToJsonButton = document.getElementById("GetTodayToJsonButton");
-GetAllToJsonButton.addEventListener("click", function () { jsonGraphUrl = allJsonStringUrl; createChart(); });
-GetLastMonthToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastMonthJsonStringUrl; createChart(); });
-GetLastWeekToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastWeekJsonStringUrl; createChart(); });
-GetTodayToJsonButton.addEventListener("click", function () { jsonGraphUrl = todayJsonStringUrl; createChart(); });
+GetAllToJsonButton.addEventListener("click", function () { jsonGraphUrl = allJsonStringUrl; createAreaChart(); });
+GetLastMonthToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastMonthJsonStringUrl; createAreaChart(); });
+GetLastWeekToJsonButton.addEventListener("click", function () { jsonGraphUrl = lastWeekJsonStringUrl; createAreaChart(); });
+GetTodayToJsonButton.addEventListener("click", function () { jsonGraphUrl = todayJsonStringUrl; createAreaChart(); });
 var btns = document.getElementsByClassName("graphButtons");
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
@@ -10854,6 +10919,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var doorTrackingWebUrl = "https://counttrackulawebapi.azurewebsites.net/api/DoorsTracking";
 var getLastContent = document.getElementById("Occupancy");
 setInterval(function GetCurrentOccupancy() {
@@ -10865,7 +10931,7 @@ setInterval(function GetCurrentOccupancy() {
         if ((0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() != "") {
             if (AxiosResponse.data >= +(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() - (+(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getWarningRangeCookie)())) {
                 overlayOn();
-                //sendEmail();
+                SendWarningEmail();
             }
             else {
                 overlayOff();
@@ -10894,247 +10960,25 @@ overlay.addEventListener("click", overlayOff);
 (0,_weather__WEBPACK_IMPORTED_MODULE_2__.default)();
 // NODEMAILER 
 var sendEmailButton = document.getElementById("sendEmailButton");
-// sendEmailButton.addEventListener("click", sendEmail);
-// COMMENTS TO BE REMOVED!!!!
-//document.getElementById('forecastDay2').innerHTML = DateTime.fromSeconds(AxiosResponse.data.daily[1].dt).weekdayLong.toString();
-//     public get weekdayLong: stringsource
-// Get the human readable long weekday, such as 'Monday'. Defaults to the system's locale if no locale has been specified
-// Example:
-// DateTime.local(2017, 10, 30).weekdayLong //=> Monday
-// console.log("CONVERTED TIME:",DateTime.fromSeconds(1607498810).toISO());
-// let weatherUrl: string ="http://openweathermap.org/img/wn/01d@2x.png"
-// let weatherIcon = document.getElementById('weatherIcon')
-// weatherIcon.setAttribute("src",weatherUrl);
-//3563b84c8d5badda0ca2c441bb96f22545c3c436
-// Nodemailer
-// require('dotenv').config();
-// const nodemailer = require('nodemailer');
-// // Step 1
-// let transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     // user: process.env.EMAIL,
-//     // pass: process.env.PASSWORD
-//     user: 'real.count.trackula@gmail.com',
-//     pass: 'Zealand2020'
-//   }
-// });
-// // Step 2
-// let mailOptions ={
-//   from: 'real.count.trackula@gmail.com',
-//   to: 'k.kremizas@gmail.com',
-//   subject: 'Test subject',
-//   text: 'Test text'
-// };
-// // Step 3
-// function sendEmail(){
-//   transporter.sendMail(mailOptions, function(err: any, data: any){
-//   if (err) {
-//     console.log('Errror occurs', err);
-//   }
-//   else{
-//     console.log('Email sent!!!')
-//   }
-// });
-// }
-// let sendEmailButton: HTMLInputElement = <HTMLInputElement> document.getElementById("sendEmailButton");
-// sendEmailButton.addEventListener("click", sendEmail);
-// SENDGRID
-// var SendGrid = require('@sendgrid/mail');
-// const sgMail = require('@sendgrid/mail');
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const msg = {
-//   to: 'k.kremizas@gmail.com',
-//   from: 'real.count.trackula@gmail.com', // Use the email address or domain you verified above
-//   subject: 'Sending with Twilio SendGrid is Fun',
-//   text: 'and easy to do anywhere, even with Node.js',
-//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-// };
-// //ES6
-// sgMail
-//   .send(msg)
-//   .then(() => {
-//     console.log('Email sent')
-//   })
-// .catch((error) => {
-//   console.error(error)
-// })
-// let getAllButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
-// let clearGetAllListButton:HTMLButtonElement =<HTMLButtonElement> document.getElementById("clearGetAllListButton")
-// let getButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getButton")
-// let getLastButton:HTMLButtonElement = <HTMLButtonElement> document.getElementById("getLastButton")
-// let addButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("addButton")
-// let updateButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("updateButton")
-// let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteButton")
-// let carsElement: HTMLUListElement = <HTMLUListElement> document.getElementById("carsContent");
-// let getContent: HTMLDivElement = <HTMLDivElement> document.getElementById("getContent");
-// let postContent: HTMLDivElement = <HTMLDivElement>document.getElementById("postContent");
-// let putContent: HTMLDivElement = <HTMLDivElement>document.getElementById("putContent");
-// let deleteContent: HTMLDivElement = <HTMLDivElement>document.getElementById("deleteContent");
-// getAllButton.addEventListener("click", GetAllDoorTrackings);
-// clearGetAllListButton.addEventListener("click",ClearGetAllList);
-// getButton.addEventListener("click",GetDoorTracking);
-// getLastButton.addEventListener("click",GetCurrentOccupancy);
-// addButton.addEventListener("click", AddCar);
-// updateButton.addEventListener("click", UpdateCar);
-// deleteButton.addEventListener("click", DeleteCar);
-// let DataArray: IDoorTracking[] = [];
-// function GetAllDoorTrackings(){
-//     axios.get<IDoorTracking[]>(doorTrackingWebUrl)
-//     .then(function(AxiosResponse):void{
-//         console.log("AxiosResponse: ",AxiosResponse);
-//         console.log("Status Code: ",AxiosResponse.status);
-//         const { data } = AxiosResponse;
-//         ClearGetAllList();
-//         AxiosResponse.data.forEach((doorTracking: IDoorTracking) => {
-//          let newNode:HTMLLIElement = AddLiElement('ID: '+doorTracking.id+', DateTime: '+doorTracking.dateTime+', Occupancy: '+doorTracking.occupancy+', IsEntrance: '+doorTracking.isEntrance);
-//          carsElement.appendChild(newNode);
-//         });
-//     })
-//     .catch(function(error:AxiosError):void{
-//         console.log(error);
-//         let errorMessage = "Error Code: "+error.response.status;
-//         console.log(errorMessage);
-//     })
-// }
-// function GetCurrentOccupancy(){
-//     axios.get(doorTrackingWebUrl + "/GetCurrentOccupancyValue")
-//     .then(function(AxiosResponse):void{
-//         console.log("AxiosResponse: ",AxiosResponse);
-//         console.log("Status Code: ",AxiosResponse.status);
-//         getLastContent.innerHTML = AxiosResponse.data.toString();
-//         })
-//     .catch(function(error:AxiosError):void{
-//         console.log(error);
-//         let errorMessage = "Error Code: "+error.response.status;
-//         console.log(errorMessage);
-//     })
-// }
-// function GetDoorTracking():void{
-//     let getInput: HTMLInputElement = <HTMLInputElement> document.getElementById("getInput");
-//     let getInputValue : number = +getInput.value;
-//     axios.get(doorTrackingWebUrl + "/" + getInputValue)
-//     .then(function(response: AxiosResponse<IDoorTracking>):void{
-//         console.log(response);
-//         console.log("Statuscode is :" + response.status);
-//         let doorTracking:IDoorTracking = response.data;
-//         console.log(doorTracking);
-//         if (response.status!=204){
-//             getContent.innerHTML = "Current Occupancy: " + doorTracking.occupancy;
-//         }
-//         else {
-//             getContent.innerHTML = "No trigger found with this ID. Try again!";
-//         }
-//             // Clear getContent after 3 seconds
-//             //HideContent(getContent);
-//     })
-//     .catch(function(error:AxiosError):void{
-//         console.log(error);
-//     })
-// }
-// function AddCar(): void {
-//     let addVendorInput: HTMLInputElement = <HTMLInputElement>document.getElementById("addVendorInput");
-//     let addModelInput: HTMLInputElement = <HTMLInputElement>document.getElementById("addModelInput");
-//     let addPriceInput: HTMLInputElement = <HTMLInputElement>document.getElementById("addPriceInput");
-//     let myVendor: string = addVendorInput.value;
-//     let myModel: string = addModelInput.value;
-//     let myPrice: number = +addPriceInput.value;
-//     axios.post<ICustomerCount>(carWebUrl,
-//         { vendor: myVendor, model: myModel, price: myPrice })
-//         .then(function (response: AxiosResponse): void {
-//             console.log("Statuscode is :" + response.status);
-//             let message: string = response.data;
-//             postContent.innerHTML = message;
-//             // Clear postContent after 3 seconds
-//             HideContent(postContent);
-//         })
-//         .catch(
-//             function (error: AxiosError): void {
-//                 console.log(error);
-//                 postContent.innerHTML = "Wrong information entered. Try again!";
-//                 // Clear postContent after 3 seconds
-//                 HideContent(postContent);
-//             }
-//         )
-// }
-// function UpdateCar(): void {
-//     let updateIdInput: HTMLInputElement = <HTMLInputElement>document.getElementById("updateIdInput");
-//     let updateVendorInput: HTMLInputElement = <HTMLInputElement>document.getElementById("updateVendorInput");
-//     let updateModelInput: HTMLInputElement = <HTMLInputElement>document.getElementById("updateModelInput");
-//     let updatePriceInput: HTMLInputElement = <HTMLInputElement>document.getElementById("updatePriceInput");
-//     let myId: number = +updateIdInput.value;
-//     let myVendor: string = updateVendorInput.value;
-//     let myModel: string = updateModelInput.value;
-//     let myPrice: number = +updatePriceInput.value;
-//     axios.put<ICustomerCount>(carWebUrl + "/" + myId ,
-//         { id: myId, vendor: myVendor, model: myModel, price: myPrice })
-//         .then(function (response: AxiosResponse): void {
-//             console.log("Statuscode is :" + response.status);
-//             let message: string = response.data;
-//             putContent.innerHTML = message;
-//             // Clear postContent after 3 seconds
-//             HideContent(putContent);
-//         })
-//         .catch(
-//             function (error: AxiosError): void {
-//                 console.log(error);
-//                 putContent.innerHTML = "Wrong information entered. Try again!";
-//                 // Clear postContent after 3 seconds
-//                 HideContent(putContent);
-//             }
-//         )
-// }
-// function DeleteCar(): void {
-//     let deleteInput: HTMLInputElement = <HTMLInputElement>document.getElementById("deleteInput");
-//     let myId: number = +deleteInput.value;
-//     axios.delete(carWebUrl + "/" + myId)
-//         .then(function (response: AxiosResponse): void {
-//             console.log("Statuscode is :" + response.status);
-//             let message: string = response.data;
-//             deleteContent.innerHTML = message;
-//             // Clear postContent after 3 seconds
-//             HideContent(deleteContent);
-//         })
-//         .catch(
-//             function (error: AxiosError): void {
-//                 console.log(error);
-//                 deleteContent.innerHTML = "Wrong information entered. Try again!";
-//                 // Clear postContent after 3 seconds
-//                 HideContent(deleteContent);
-//             }
-//         )
-// }
-// function AddLiElement(text:string):HTMLLIElement {
-//     let newLi:HTMLLIElement = document.createElement('li');
-//     let newTextNode:Text = document.createTextNode(text)
-//     newLi.appendChild(newTextNode);
-//     return newLi;
-// }
-// function ClearGetAllList():void{
-//     while (carsElement.firstChild){
-//         carsElement.removeChild(carsElement.lastChild)
-//     }
-// }
-// // Clear Content after 3 seconds
-// function HideContent(contentName:HTMLDivElement){
-//     clearTimeout(timeout);
-//     timeout = setTimeout(function () {
-//         contentName.innerHTML = "";
-//         }, 3000);
-// }
-// console.log(DataArray);
-// function ConvertData(){
-// var regexString = /(\d+)\-(\d+)\-(\d+)\D\:(\d+)\:(\d+)\:(\d+)\,(\d+)/;
-// var originalData = '2016-01-17T:08:44:29,99';
-// let year:number= +originalData.replace(regexString, '$1');
-// let month:number= +originalData.replace(regexString, '$2');
-// let day:number= +originalData.replace(regexString, '$3');
-// let hour:number= +originalData.replace(regexString, '$4');
-// let minute:number= +originalData.replace(regexString, '$5');
-// let second:number= +originalData.replace(regexString, '$6');
-// let customerCount:number= +originalData.replace(regexString, '$7');
-// console.log(year+","+month+","+day+","+hour+","+minute+","+second+","+customerCount);
-// }
+sendEmailButton.addEventListener("click", SendWarningEmail);
+function SendWarningEmail() {
+    var email = (0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getEmailCookie)().toString();
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default().post(doorTrackingWebUrl + "/WarningEmail", "\"" + email + "\"", {
+        headers: {
+            "Accept": "application/json",
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (AxiosResponse) {
+        console.log("AxiosResponse: ", AxiosResponse);
+        console.log("Status Code: ", AxiosResponse.status);
+    })
+        .catch(function (error) {
+        console.log(error);
+        var errorMessage = "Error Code: " + error.response.status;
+        console.log(errorMessage);
+    });
+}
 
 
 /***/ }),
@@ -11164,7 +11008,7 @@ var exclude = "minutely,hourly";
 function getWeatherWidget() {
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/onecall" + "?lat=" + lat + "&lon=" + lon + "&exclude=" + exclude + "&appid=" + apikey + "&units=" + units)
         .then(function (AxiosResponse) {
-        console.log("AxiosResponse: ", AxiosResponse);
+        //console.log("AxiosResponse: ", AxiosResponse);
         //console.log("Status Code: ", AxiosResponse.status);
         // This needs refactoring!!!!!
         // Load Temps

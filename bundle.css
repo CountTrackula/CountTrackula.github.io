@@ -94,7 +94,7 @@ h1 {
 
 #graphsPage {
   font-size: 300%;
-  grid-column: 5 / span 6;
+  grid-column: 1 / span 12;
   grid-row: 1 / span 1; }
 
 /* Style the button that is used to open and close the collapsible content */
