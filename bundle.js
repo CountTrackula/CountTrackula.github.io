@@ -10596,9 +10596,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getEmailCookie": () => /* binding */ getEmailCookie
 /* harmony export */ });
 /* harmony import */ var _graph__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./graph */ "./src/js/graph.ts");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./src/js/index.ts");
-
-//import {counter} from "./index"
 
 var maximumCustomers = document.getElementById("maximumCustomersInput");
 var warningRange = document.getElementById("warningRangeInput");
@@ -10690,7 +10687,7 @@ function deleteCookies() {
     document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     alert("Settings cleared succesfully.");
     (0,_graph__WEBPACK_IMPORTED_MODULE_0__.default)();
-    _index__WEBPACK_IMPORTED_MODULE_1__.index.counter = 0;
+    //index.counter = 0;
 }
 // collapsible start
 var coll = document.getElementsByClassName("collapsible");
@@ -10941,10 +10938,14 @@ setInterval(function GetCurrentOccupancy() {
         //console.log("Status Code: ",AxiosResponse.status);
         getLastContent.innerHTML = AxiosResponse.data.toString();
         if ((0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() != "") {
-            if (AxiosResponse.data >= +(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() - (+(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getWarningRangeCookie)()) && counter == 0) {
+            if ((AxiosResponse.data >= +(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() - (+(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getWarningRangeCookie)())) && counter == 0) {
                 overlayOn();
                 SendWarningEmail();
                 counter += 1;
+            }
+            else if ((AxiosResponse.data < +(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() - (+(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getWarningRangeCookie)())) && counter != 0) {
+                overlayOff();
+                counter = 0;
             }
         }
     })
