@@ -134,6 +134,7 @@ h1 {
 
 label {
   display: inline-block;
+  width: 180px;
   text-align: right;
   padding: 8px;
   font-size: small; }
