@@ -10605,10 +10605,10 @@ var warningRangeValue = warningRange.value;
 var emailValue = email.value;
 var setCookieButton = document.getElementById("setCookieButton");
 setCookieButton.addEventListener("click", setCookie);
-var getCookieButton = document.getElementById("getCookieButton");
-getCookieButton.addEventListener("click", getCookie);
-var clearTextBoxesButton = document.getElementById("clearTextBoxesButton");
-clearTextBoxesButton.addEventListener("click", clearTextBoxes);
+// let getCookieButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("getCookieButton")
+// getCookieButton.addEventListener("click", getCookie);
+// let clearTextBoxesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("clearTextBoxesButton")
+// clearTextBoxesButton.addEventListener("click", clearTextBoxes);
 var deleteCookiesButtonSettings = document.getElementById("deleteCookiesButtonSettings");
 deleteCookiesButtonSettings.addEventListener("click", deleteCookies);
 var deleteCookiesButtonOverlay = document.getElementById("deleteCookiesButtonOverlay");
@@ -10687,7 +10687,6 @@ function deleteCookies() {
     document.cookie = "email= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     alert("Settings cleared succesfully.");
     (0,_graph__WEBPACK_IMPORTED_MODULE_0__.default)();
-    //index.counter = 0;
 }
 // collapsible start
 var coll = document.getElementsByClassName("collapsible");
@@ -10719,6 +10718,46 @@ function WarningRangeLimit() {
     warningRange.setAttribute("max", (maximumCustomersValue - 1).toString());
 }
 maximumCustomers.onchange = warningRange.onchange = WarningRangeLimit;
+
+
+/***/ }),
+
+/***/ "./src/js/email.ts":
+/*!*************************!*
+  !*** ./src/js/email.ts ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SendWarningEmail": () => /* binding */ SendWarningEmail
+/* harmony export */ });
+/* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
+/* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cookies */ "./src/js/cookies.ts");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index */ "./src/js/index.ts");
+
+
+
+function SendWarningEmail() {
+    var email = (0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getEmailCookie)().toString();
+    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default().post(_index__WEBPACK_IMPORTED_MODULE_2__.doorTrackingWebUrl + "/WarningEmail", "\"" + email + "\"", {
+        headers: {
+            "Accept": "application/json",
+            "Content-type": "application/json"
+        }
+    })
+        .then(function (AxiosResponse) {
+        console.log("AxiosResponse: ", AxiosResponse);
+        console.log("Status Code: ", AxiosResponse.status);
+    })
+        .catch(function (error) {
+        console.log(error);
+        var errorMessage = "Error Code: " + error.response.status;
+        console.log(errorMessage);
+    });
+}
 
 
 /***/ }),
@@ -10913,16 +10952,14 @@ for (var i = 0; i < btns.length; i++) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "index": () => /* reexport module object */ _index__WEBPACK_IMPORTED_MODULE_3__,
+/* harmony export */   "doorTrackingWebUrl": () => /* binding */ doorTrackingWebUrl,
 /* harmony export */   "counter": () => /* binding */ counter
 /* harmony export */ });
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/axios/index */ "./node_modules/axios/index.js");
 /* harmony import */ var _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _cookies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cookies */ "./src/js/cookies.ts");
 /* harmony import */ var _weather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weather */ "./src/js/weather.ts");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index */ "./src/js/index.ts");
-
-
+/* harmony import */ var _email__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./email */ "./src/js/email.ts");
 
 
 
@@ -10940,7 +10977,7 @@ setInterval(function GetCurrentOccupancy() {
         if ((0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() != "") {
             if ((AxiosResponse.data >= +(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() - (+(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getWarningRangeCookie)())) && counter == 0) {
                 overlayOn();
-                SendWarningEmail();
+                (0,_email__WEBPACK_IMPORTED_MODULE_3__.SendWarningEmail)();
                 counter += 1;
             }
             else if ((AxiosResponse.data < +(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getMaximumCustomersCookie)() - (+(0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getWarningRangeCookie)())) && counter != 0) {
@@ -10962,34 +10999,14 @@ function overlayOn() {
 function overlayOff() {
     document.getElementById("overlay").style.display = "none";
 }
-var overlayButton = document.getElementById("overlayButton");
-overlayButton.addEventListener("click", overlayOn);
+// let overlayButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("overlayButton")
+// overlayButton.addEventListener("click", overlayOn);
 var overlay = document.getElementById("overlay");
 overlay.addEventListener("click", overlayOff);
 // GRAPHS PAGE
 // Use Weather API
 (0,_weather__WEBPACK_IMPORTED_MODULE_2__.default)();
-// NODEMAILER 
-var sendEmailButton = document.getElementById("sendEmailButton");
-sendEmailButton.addEventListener("click", SendWarningEmail);
-function SendWarningEmail() {
-    var email = (0,_cookies__WEBPACK_IMPORTED_MODULE_1__.getEmailCookie)().toString();
-    _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default().post(doorTrackingWebUrl + "/WarningEmail", "\"" + email + "\"", {
-        headers: {
-            "Accept": "application/json",
-            "Content-type": "application/json"
-        }
-    })
-        .then(function (AxiosResponse) {
-        console.log("AxiosResponse: ", AxiosResponse);
-        console.log("Status Code: ", AxiosResponse.status);
-    })
-        .catch(function (error) {
-        console.log(error);
-        var errorMessage = "Error Code: " + error.response.status;
-        console.log(errorMessage);
-    });
-}
+// call to our api where we call mailchimp's api 
 
 
 /***/ }),
@@ -11019,7 +11036,7 @@ var exclude = "minutely,hourly";
 function getWeatherWidget() {
     _node_modules_axios_index__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.openweathermap.org/data/2.5/onecall" + "?lat=" + lat + "&lon=" + lon + "&exclude=" + exclude + "&appid=" + apikey + "&units=" + units)
         .then(function (AxiosResponse) {
-        //console.log("AxiosResponse: ", AxiosResponse);
+        console.log("AxiosResponse: ", AxiosResponse);
         //console.log("Status Code: ", AxiosResponse.status);
         // This needs refactoring!!!!!
         // Load Temps
@@ -11039,13 +11056,13 @@ function getWeatherWidget() {
         // Load Current Weather name
         document.getElementById('currentWeather').innerHTML = AxiosResponse.data.current.weather[0].main;
         // Load Weather icons
-        document.getElementById('currentWeatherIcon').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.current.weather[0].icon + "@2x.png");
-        document.getElementById('forecastWeatherIconDay1').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[0].weather[0].icon + ".png");
-        document.getElementById('forecastWeatherIconDay2').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[1].weather[0].icon + ".png");
-        document.getElementById('forecastWeatherIconDay3').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[2].weather[0].icon + ".png");
-        document.getElementById('forecastWeatherIconDay4').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[3].weather[0].icon + ".png");
-        document.getElementById('forecastWeatherIconDay5').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[4].weather[0].icon + ".png");
-        document.getElementById('forecastWeatherIconDay6').setAttribute("src", "http://openweathermap.org/img/wn/" + AxiosResponse.data.daily[5].weather[0].icon + ".png");
+        document.getElementById('currentWeatherIcon').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.current.weather[0].icon + "@2x.png");
+        document.getElementById('forecastWeatherIconDay1').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[0].weather[0].icon + ".png");
+        document.getElementById('forecastWeatherIconDay2').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[1].weather[0].icon + ".png");
+        document.getElementById('forecastWeatherIconDay3').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[2].weather[0].icon + ".png");
+        document.getElementById('forecastWeatherIconDay4').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[3].weather[0].icon + ".png");
+        document.getElementById('forecastWeatherIconDay5').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[4].weather[0].icon + ".png");
+        document.getElementById('forecastWeatherIconDay6').setAttribute("src", "https://openweathermap.org/img/wn/" + AxiosResponse.data.daily[5].weather[0].icon + ".png");
         // Load Days
         document.getElementById('forecastDay1').innerHTML = luxon__WEBPACK_IMPORTED_MODULE_1__.DateTime.fromSeconds(AxiosResponse.data.daily[0].dt).weekdayLong.toString();
         document.getElementById('forecastDay2').innerHTML = luxon__WEBPACK_IMPORTED_MODULE_1__.DateTime.fromSeconds(AxiosResponse.data.daily[1].dt).weekdayLong.toString();

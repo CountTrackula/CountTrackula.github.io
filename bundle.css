@@ -1,32 +1,3 @@
-/* This hides all pages */
-.page {
-  display: none; }
-
-/* This displays the first page */
-.default {
-  display: block; }
-
-/* This displays the page corresponding to the one you clicked on */
-:target {
-  display: block; }
-
-/* This hides the default page when another page is clicked */
-:target ~ .default {
-  display: none; }
-
-body {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: repeat(10, 1fr);
-  font-family: Tahoma, serif;
-  color: #252222;
-  background: #3a7bd5;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(#81b1a5, #4d796e);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: radial-gradient(#81b1a5, #4d796e);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
-
 header {
   grid-row: 1 / span 2;
   padding: 1rem;
@@ -42,17 +13,21 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr  0.2fr 1fr 1fr 0.2fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(2, 1fr); }
 
-footer {
-  grid-row: 11 / span 1;
-  padding: 1rem;
-  text-align: center; }
+body {
+  display: grid;
+  height: 120vh;
+  grid-template-rows: repeat(10, 1fr);
+  font-family: Tahoma, serif;
+  color: #252222;
+  background: #3a7bd5;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(#81b1a5, #4d796e);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: radial-gradient(#81b1a5, #4d796e);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
 h1 {
   text-align: center; }
-
-.OccupancyValue {
-  color: #eb7e3f;
-  text-shadow: 2px 2px 5px black; }
 
 /* Style the navigation bar */
 .navbar {
@@ -87,14 +62,49 @@ h1 {
     float: none;
     display: block; } }
 
+/* This hides all pages */
+.page {
+  display: none; }
+
+/* This displays the first page */
+.default {
+  display: block; }
+
+/* This displays the page corresponding to the one you clicked on */
+:target {
+  display: block; }
+
+/* This hides the default page when another page is clicked */
+:target ~ .default {
+  display: none; }
+
+#homePage {
+  grid-column: 1 / span 14; }
+
+#data {
+  padding-left: 8rem;
+  padding-right: 5rem;
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: 100%;
+  display: grid;
+  grid-column: 3 / span 8;
+  grid-template-columns: repeat(3, 1fr); }
+
+#graphsPage {
+  padding-right: 5rem;
+  padding-bottom: 50px;
+  font-size: 300%;
+  grid-column: 5 / span 6;
+  grid-row: 1 / span 1; }
+
+.OccupancyValue {
+  color: #eb7e3f;
+  text-shadow: 2px 2px 5px black; }
+
 #OccupancyArea {
   font-size: 300%;
   grid-column: 5 / span 4;
-  grid-row: 1 / span 1; }
-
-#graphsPage {
-  font-size: 300%;
-  grid-column: 1 / span 12;
   grid-row: 1 / span 1; }
 
 /* Style the button that is used to open and close the collapsible content */
@@ -115,6 +125,7 @@ h1 {
 
 /* Style the collapsible content. Note: hidden by default //Style the text and input */
 .content {
+  width: 445px;
   padding: 0px 18px;
   background-color: white;
   max-height: 0;
@@ -123,17 +134,17 @@ h1 {
 
 label {
   display: inline-block;
-  width: 180px;
   text-align: right;
   padding: 8px;
   font-size: small; }
 
 input {
+  border-radius: 5px;
   display: inline-block; }
 
 #collapsibleArea {
-  grid-column: 5 / span 6;
-  grid-row: 2 / span 1; }
+  margin-right: 100px;
+  grid-template-columns: repeat(4, 1fr); }
 
 .default {
   grid-column: 5 / span 6;
@@ -281,7 +292,7 @@ input {
   z-index: 1; }
 
 .fa-info-circle {
-  color: #6a6ab1; }
+  color: #757586; }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
@@ -322,12 +333,14 @@ li {
   cursor: pointer; }
 
 #weatherWidget {
+  margin-right: 40px;
   background: #f0d3c2;
   opacity: 0.9;
   border-radius: 1rem;
   padding: 1rem;
-  width: 18vw;
-  font-size: 0.7rem; }
+  width: 20vw;
+  font-size: 0.7rem;
+  grid-template-columns: repeat(4, 1fr); }
 
 .forecast-row {
   text-align: center;
